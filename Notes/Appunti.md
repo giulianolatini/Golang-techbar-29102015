@@ -23,6 +23,7 @@ Per rendere accessibili al plug-in i tools di go vanno istanziate le variabili o
 
 ```bash
 # Setting Golang enviroment globally for users
-export GOROOT="/usr/local/go"                                                                                                              export GOPATH="/home/wolf/Sviluppo/go"
+export GOROOT="/usr/local/go"
+export GOPATH="/home/wolf/Sviluppo/go"
 export PATH=$GOPATH/bin:$GOROOT/bin:/usr/local/bin:$PATH
 ```
