@@ -73,8 +73,14 @@ sudo apt-get install zeal
 apm install atom-zeal
 ```
 
-[Dash](https://kapeli.com/dash) - browser offline per documentazione disponibile solo per OSX[Atom plugin-Dash](https://atom.io/packages/dash)
+[Dash](https://kapeli.com/dash) - browser offline per documentazione disponibile solo per OSX
+
+[Atom plugin-Dash](https://atom.io/packages/dash)
 
 ```bash
 apm install dash
 ```
+
+[highlight-line](https://atom.io/packages/highlight-line) This package allows customization of the line selection styles. In my case, I have added a dashed yellow border to the bottom and top my selection. I like the way it looks and helps me determine the range of selection specially at the last line where it could be a partial selection.
+
+[gotags](https://github.com/jstemmer/gotags) There is an awesome tool called `gotags` that is ctags compatible generator for Go Language. It utilizes the power of AST and Parsing classes in the Go standard library to really understand and capture all the structure, interfaces, variables and methods names. It generates a much better ctags list than the standard ctags standard tools.
