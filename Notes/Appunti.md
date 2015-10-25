@@ -27,3 +27,54 @@ export GOROOT="/usr/local/go"
 export GOPATH="/home/wolf/Sviluppo/go"
 export PATH=$GOPATH/bin:$GOROOT/bin:/usr/local/bin:$PATH
 ```
+
+Riavviato il pc, così che all'avvio della sessione grafica le variabili saranno leggibili avviando Atom dall'interfaccia grafica e non solo dalla cli (ereditando così l'ambiente della shell di avvio).
+
+[go-rename](https://atom.io/packages/go-rename)
+
+[file-icons](https://atom.io/packages/file-icons) Configurazione `styles.less` nella cartella di configurazione di Atom
+
+```less
+ // style the background color of the tree view
+ .tree-view {
+     font-family: "Source Code Pro for Powerline";
+     font-size: 12px;
+ }
+
+ .list-group li:not(.list-nested-item),
+ .list-tree li:not(.list-nested-item),
+ .list-group li.list-nested-item > .list-item,
+ .list-tree li.list-nested-item > .list-item {
+     line-height:18px;
+ }
+
+ .list-group .selected:before,
+ .list-tree .selected:before {
+     height:18px;
+ }
+
+ .list-tree.has-collapsable-children .list-nested-item > .list-tree > li,
+ .list-tree.has-collapsable-children .list-nested-item > .list-group > li {
+     padding-left:12px;
+ }
+```
+
+[Zeal](https://zealdocs.org/download.html) - browser offline per documentazione, software opensource ispirato da Dash, disponibile per Linux e Windows. Installabile usando i seguenti comandi di UbuntuLinux e derivati:
+
+```bash
+sudo add-apt-repository ppa:zeal-developers/ppa
+sudo apt-get update
+sudo apt-get install zeal
+```
+
+[Atom plugin-Zeal](https://atom.io/packages/atom-zeal)
+
+```bash
+apm install atom-zeal
+```
+
+[Dash](https://kapeli.com/dash) - browser offline per documentazione disponibile solo per OSX[Atom plugin-Dash](https://atom.io/packages/dash)
+
+```bash
+apm install dash
+```
