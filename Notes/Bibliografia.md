@@ -6,6 +6,12 @@ Blogs
 
 [Dave Cheney's Blog - The acme of foolishness](http://dave.cheney.net/) : Blog [Cross compilation with Go 1.5](http://dave.cheney.net/2015/08/22/cross-compilation-with-go-1-5)
 
+[Tour di Go](https://go-tour-ita.appspot.com/welcome/1): Sito intoduttivo di Go con demo interattivi.
+
+[The Go Programming Language](https://golang.org/): Sito ufficiale.
+
+[Go by Example](https://gobyexample.com/): Blog di esempi.
+
 ---
 
 Books
@@ -25,6 +31,8 @@ Books
 
 [Programming in Go - Creating Applications for the 21st Century](http://www.qtrac.eu/gobook.html): by Mark Summerfield, Addison-Wesley Professional [May 1, 2012]; ISBN-10: 0321774639 – ISBN-13: 978-0321774637
 
-[Level Up Your Web Apps With Go](https://www.sitepoint.com/premium/books/level-up-your-web-apps-with-go): Mal Curtis; SitePoint [April 27, 2015]
+[Level Up Your Web Apps With Go](https://www.sitepoint.com/premium/books/level-up-your-web-apps-with-go): Mal Curtis; SitePoint [April 27, 2015];
 
 [The Go Programming Language Phrasebook](http://www.amazon.com/Programming-Language-Phrasebook-Developers-Library/dp/0321817141/ref=asap_bc?ie=UTF8): David Chisnall; Addison-Wesley Professional[May 10, 2012]; ISBN-13: 978-0321817143
+
+[Go Programming by Example](http://www.amazon.com/Go-Programming-Example-Agus-Kurniawan-ebook/dp/B00TWLZVQQ): Agus Kurniawan; PE Press [February 21, 2015];
