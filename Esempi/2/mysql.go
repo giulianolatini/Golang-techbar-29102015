@@ -24,10 +24,10 @@ func main() {
 	//rows, err := db.Query("SELECT T13_Id_Obj FROM EntraNIA.Oggetti " +
 	//                      "WHERE (T13_Id_SottoSito='001' " +
 	//                      "AND T13_StatoPagina='0' AND T13_Id_Oggetto='13');")
-	rows, err := db.Query("SELECT T25_Dir, T25_Name, T25_Ext, T25_Path " +
-		"FROM EntraNIA.Download " +
-		"INNER JOIN EntraNIA.Download_Obj " +
-		"ON EntraNIA.Download.T25_Id_Obj=EntraNIA.Download_Obj.T13_id_Obj;")
+	rows, err := db.Query(`SELECT T25_Dir, T25_Name, T25_Ext, T25_Path
+		FROM EntraNIA.Download
+		INNER JOIN EntraNIA.Download_Obj
+		ON EntraNIA.Download.T25_Id_Obj=EntraNIA.Download_Obj.T13_id_Obj;`)
 
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
