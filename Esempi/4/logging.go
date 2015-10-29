@@ -45,21 +45,6 @@ func Init(
 		log.Ldate|log.Ltime|log.Lshortfile)
 }
 
-/*
-NullorValue restituisce la stringa "NULL" se v è vuoto
-oppure il valore v in tutti gli altri casi
-*/
-func NullorValue(v sql.RawBytes) (s string) {
-
-	var result string
-	if v != nil {
-		result = string(v)
-	} else {
-		result = "NULL"
-	}
-	return result
-}
-
 func main() {
 
 	// Init Section

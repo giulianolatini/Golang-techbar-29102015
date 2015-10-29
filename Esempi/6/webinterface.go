@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"flag"
 	"fmt"
 	"io"
@@ -12,9 +11,6 @@ import (
 	"strconv"
 
 	"github.com/gorilla/mux"
-
-	_ "github.com/go-sql-driver/mysql" //Import for side effect
-	_ "github.com/mattn/go-sqlite3"    //Importazione statica anche in mancato uso
 )
 
 // Global Section
@@ -25,9 +21,7 @@ var (
 	Error   *log.Logger
 )
 
-var localdb *sql.DB
-var rootPath *string // Root Path to start filesystem visiting
-var debug *int       // Debug level
+var debug *int // Debug level
 
 /*
 Init : Inizialize Logs Handlers
@@ -56,21 +50,6 @@ func Init(
 
 }
 
-/*
-NullorValue restituisce la stringa "NULL" se v è vuoto
-oppure il valore v in tutti gli altri casi
-*/
-func NullorValue(v sql.RawBytes) (s string) {
-
-	var result string
-	if v != nil {
-		result = string(v)
-	} else {
-		result = "NULL"
-	}
-	return result
-}
-
 /* UX Interface to check files to dalete
  */
 func hello(res http.ResponseWriter, req *http.Request) {
@@ -81,8 +60,7 @@ func hello(res http.ResponseWriter, req *http.Request) {
 		"Content-Type",
 		"text/html",
 	)
-	io.WriteString(
-		res,
+	io.WriteString(res,
 		`<doctype html>
 			<html>
 			<head>
@@ -95,10 +73,10 @@ func hello(res http.ResponseWriter, req *http.Request) {
 	)
 	io.WriteString(res,
 		fmt.Sprintf(
-			"<div>"+
-				"<button onclick=myFunction(\"https://localhost/api/delete/%s\")>DELETE</button>"+
-				"<a href=http://www.univpm.it/Entra/Engine/RAServeFile.php/f%s> %s </a>"+
-				"</div>",
+			`<div>
+				<button onclick=myFunction(\"https://localhost/api/delete/%s\")>DELETE</button>
+				<a href=http://www.univpm.it/Entra/Engine/RAServeFile.php/f%s> %s </a>
+				</div>`,
 			"5",
 			"/Prova",
 			"Prova"))
