@@ -4,13 +4,23 @@ Bibliografia
 Blogs
 -----
 
-[Dave Cheney's Blog - The acme of foolishness](http://dave.cheney.net/) : Blog [Cross compilation with Go 1.5](http://dave.cheney.net/2015/08/22/cross-compilation-with-go-1-5)
+[Dave Cheney's Blog - The acme of foolishness](http://dave.cheney.net/) : Blog
+
+[Cross Compilation make right ambient](http://dave.cheney.net/2015/03/03/cross-compilation-just-got-a-whole-lot-better-in-go-1-5)
+
+[Cross compilation with Go 1.5](http://dave.cheney.net/2015/08/22/cross-compilation-with-go-1-5)
 
 [Tour di Go](https://go-tour-ita.appspot.com/welcome/1): Sito intoduttivo di Go con demo interattivi.
 
 [The Go Programming Language](https://golang.org/): Sito ufficiale.
 
+[Installazione ambiente GO](https://golang.org/doc/install)
+
 [Go by Example](https://gobyexample.com/): Blog di esempi.
+
+[marcio.io](http://marcio.io/2015/07/supercharging-atom-editor-for-go-development/): Pagina con consigli per creare in Atom un ambiente Go-confortevole sul blog di Marcio Castilho
+
+[Atom.io](https://atom.io/): Sito ufficiale dell'editor Atom
 
 ---
 

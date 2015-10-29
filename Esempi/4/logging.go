@@ -2,7 +2,6 @@ package main
 
 import (
 	"database/sql"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -64,10 +63,7 @@ func main() {
 
 	// Init Section
 
-	var err error        // Generic variables error
-	var ptyColumns *int  // Terminal Columns to Output
-	var debug *int       // Debug level
-	var rootPath *string // Root Path to start filesystem visiting
+	var err error // Generic variables error
 
 	// Init(ioutil.Discard, ioutil.Discard, ioutil.Discard, ioutil.Discard)
 	// Init(ioutil.Discard, ioutil.Discard, ioutil.Discard, os.Stdout)
@@ -99,21 +95,21 @@ func main() {
 		"FS_Ext TEXT," +
 		"URL_Path TEXT" +
 		"); CREATE INDEX IF NOT EXISTS PK_WEBID on downloadobj (id ASC);")
-
+	Info.Println(result)
 	if localerr != nil {
 		Error.Println("Failed to create DownloadObj Table and Index")
 		os.Exit(6) // proper error handling instead of panic in your app
 	} else {
 		Info.Println("Creation DonloadObj OK:", result)
 	}
-
+	Trace.Println(result)
 	result, localerr = localdb.Exec("CREATE TABLE IF NOT EXISTS ostree (" +
 		"id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL," +
 		"path TEXT," +
 		"filename TEXT," +
 		"date TEXT " +
 		"); CREATE INDEX IF NOT EXISTS PK_OSID on ostree (id ASC);")
-
+	Trace.Println(result)
 	if localerr != nil {
 		Error.Println("Failed to create OsTree Table and Index")
 		os.Exit(6) // proper error handling instead of panic in your app
@@ -121,74 +117,4 @@ func main() {
 		Info.Println("Creation OsTree OK:", result)
 	}
 
-	// Execute the query
-	//rows, err := db.Query("SELECT T13_Id_Obj FROM EntraNIA.Oggetti " +
-	//                      "WHERE (T13_Id_SottoSito='001' " +
-	//                      "AND T13_StatoPagina='0' AND T13_Id_Oggetto='13');")
-	entrarows, entraerr := entradb.Query("SELECT T25_Dir, T25_Name, T25_Ext, T25_Path " +
-		"FROM EntraNIA.Download " +
-		"INNER JOIN EntraNIA.Download_Obj " +
-		"ON EntraNIA.Download.T25_Id_Obj=EntraNIA.Download_Obj.T13_id_Obj;")
-
-	if entraerr != nil {
-		Error.Println("Failed to query for Download_Obj")
-		os.Exit(8)
-	}
-
-	// Get column names
-	columns, err := entrarows.Columns()
-	if err != nil {
-		Error.Println("Failed to get columns name from Download_Obj")
-		os.Exit(10) // proper error handling instead of panic in your app
-	}
-
-	// Make a slice for the values
-	values := make([]sql.RawBytes, len(columns))
-
-	// rows.Scan wants '[]interface{}' as an argument, so we must copy the
-	// references into such a slice
-	// See http://code.google.com/p/go-wiki/wiki/InterfaceSlice for details
-	scanArgs := make([]interface{}, len(values))
-	for i := range values {
-		scanArgs[i] = &values[i]
-	}
-
-	// Fetch rows
-	iRow := 0
-	for entrarows.Next() {
-		// get RawBytes from data
-		err = entrarows.Scan(scanArgs...)
-		if err != nil {
-			Error.Println("Failed to parsing columsData from Download_Obj")
-			os.Exit(12) // proper error handling instead of panic in your app
-		}
-
-		result, localerr = localdb.Exec("Insert into DownloadObj "+
-			"(id, FS_Path, FS_Name, FS_Ext, URL_Path) values"+
-			" (?, ?, ?, ?, ?)",
-			nil,
-			NullorValue(values[0]), NullorValue(values[1]),
-			NullorValue(values[2]), NullorValue(values[3]))
-		if localerr != nil {
-			Error.Println("Failed to create DownloadObj Table and Index")
-			os.Exit(14) // proper error handling instead of panic in your app
-		} else {
-			iRow++
-			switch *debug {
-			case 0, 2:
-				{ // Print . for Insert
-					fmt.Printf("%s", ".")
-					if (iRow % *ptyColumns) == 0 {
-						fmt.Println(".")
-					}
-				}
-			}
-
-			Info.Printf("Creation row: %d in DownloadObj OK", iRow)
-		}
-	}
-	if err = entrarows.Err(); err != nil {
-		Error.Printf("Failed on row: %d for corruptions data", iRow)
-		os.Exit(16) // proper error handling instead of panic in your app
-	}
 }

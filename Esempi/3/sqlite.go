@@ -47,7 +47,7 @@ func main() {
 		"FS_Ext TEXT," +
 		"URL_Path TEXT" +
 		"); CREATE INDEX IF NOT EXISTS PK_WEBID on downloadobj (id ASC);")
-
+	fmt.Println(result)
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
@@ -58,39 +58,9 @@ func main() {
 		"filename TEXT," +
 		"date TEXT " +
 		"); CREATE INDEX IF NOT EXISTS PK_OSID on ostree (id ASC);")
-
+	fmt.Println(result)
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
 
-	for entrarows.Next() {
-		// get RawBytes from data
-		err = entrarows.Scan(scanArgs...)
-		if err != nil {
-			Error.Println("Failed to parsing columsData from Download_Obj")
-			os.Exit(12) // proper error handling instead of panic in your app
-		}
-
-		result, err = db.Exec("Insert into DownloadObj "+
-			"(id, FS_Path, FS_Name, FS_Ext, URL_Path) values"+
-			" (?, ?, ?, ?, ?)",
-			nil,
-			NullorValue(values[0]), NullorValue(values[1]),
-			NullorValue(values[2]), NullorValue(values[3]))
-		if localerr != nil {
-			Error.Println("Failed to create DownloadObj Table and Index")
-			os.Exit(14) // proper error handling instead of panic in your app
-		} else {
-			iRow++
-			switch *debug {
-			case 0, 2:
-				{ // Print . for Insert
-					fmt.Printf("%s", ".")
-					if (iRow % *ptyColumns) == 0 {
-						fmt.Println(".")
-					}
-				}
-			}
-		}
-	}
 }
